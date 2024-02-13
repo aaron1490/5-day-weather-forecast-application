@@ -6,7 +6,7 @@ var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchBox}&a
 var submitBtn = $("#search-button");
 var oldSearch = $(`#history`);
 var currentDate = dayjs().format(`DD/MM/YYYY`);
-var search;
+
 
 
 // Load previous search history from local storage (array format)
@@ -16,9 +16,9 @@ function previousSearches() {
 
 
 
-// Iterate through the array with a loop and display each previous search in the left side under search bar
+// Iterate through the array and display each previous search in the left side under search bar to a maximum of 6. When we hit 6 we insert the latest search but forget the oldest search
 
-// Run the APIkey call to the end point
+// fetch the queryURL from the API
 fetch(queryURL)
   .then(function (response) {
     return response.json();
@@ -39,10 +39,10 @@ fetch(queryURL)
 
 // 5 day weather forecast display on the right side when a city is searched
 
-// click event that take the value of user input in searchBox and adds it to the variable called search
+// click event that take the value of user input in searchBox and declares it as the variable called search
 submitBtn.onclick(function (event) {
   event.preventdefault();
-  search = searchBox.val();
+  var search = searchBox.val();
 
 })
 
