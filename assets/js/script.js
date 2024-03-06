@@ -86,11 +86,17 @@ $(document).ready(function () {
   <p>Wind: ${data.wind.speed} m/s</p>
   <p>Humidity: ${data.main.humidity} %</p>
   `);
+
+  // only display the CSS styled border once a search has been run
+  todaySection.css('border', 'solid black 1px');
   }
 
   // display the forecasted weather data
   function displayForecast(forecastData) {
     forecastSection.empty();
+
+    // hide the header before a search is run
+    $("#forecast-header").css("display", "block");
 
     for (let i = 0; i < forecastData.list.length; i += 8) {
       var forecastItem = forecastData.list[i];
