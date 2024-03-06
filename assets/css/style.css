@@ -1,3 +1,11 @@
 .weather-header {
     background-image: linear-gradient(to right, #3463bc, #200a4c) !important;
 }
+
+#today {
+    border: solid black 1px;
+    padding: 10px;
+}
+
+
+
