@@ -27,4 +27,7 @@
 .forecast-card {
     margin-left: 10px;
     margin-right: 10px;
+    background: linear-gradient(to right, #18577d, #4682b4);
+    color: white;
+    border: solid black 2px;
 }

@@ -81,14 +81,16 @@ $(document).ready(function () {
   // display current weather data
   function displayCurrentWeather(data) {
     todaySection.html(`
-  <h2>${data.name} ${currentDate} <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="Weather Icon"></h2>
+  <h2>${
+    data.name
+  } ${currentDate} <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="Weather Icon"></h2>
   <p>Temperature: ${(data.main.temp - 273.15).toFixed(1)} °C</p>
   <p>Wind: ${data.wind.speed} m/s</p>
   <p>Humidity: ${data.main.humidity} %</p>
   `);
 
-  // only display the CSS styled border once a search has been run
-  todaySection.css('border', 'solid black 1px');
+    // only display the CSS styled border once a search has been run
+    todaySection.css("border", "solid black 1px", "border-radius", "5px");
   }
 
   // display the forecasted weather data
@@ -98,41 +100,42 @@ $(document).ready(function () {
     // hide the header before a search is run
     $("#forecast-header").css("display", "block");
 
-    for (let i = 8; i < forecastData.list.length; i += 8) {
-      var forecastItem = forecastData.list[i];
-      var forecastDate = dayjs(forecastItem.dt_txt).format("DD/MM/YYYY");
-      var forecastTemp = (forecastItem.main.temp - 273.15).toFixed(1);
-      var forecastWeather = forecastItem.weather[0].main;
+    for (let i = 1; i <= 5; i++) {
+      var forecastItem = forecastData.list[i * 8 - 1];
+      if (forecastItem) {
+        var forecastDate = dayjs(forecastItem.dt_txt).format("DD/MM/YYYY");
+        var forecastTemp = (forecastItem.main.temp - 273.15).toFixed(1);
 
-      var forecastCard = $("<div>").addClass("col-md-2 card forecast-card");
-      var forecastCardBody = $("<div>").addClass("card-body");
-      var forecastCardTitle = $("<h5>")
-        .addClass("card-title")
-        .text(forecastDate);
-      var forecastCardText = $("<p>")
-        .addClass("card-text")
-        .text(`Temp: ${forecastTemp} °C`);
-      var forecastWeatherIcon = $("<img>").attr(
-        "src",
-        `http://openweathermap.org/img/w/${forecastItem.weather[0].icon}.png`
-      );
-      var forecastWindText = $("<p>")
-        .addClass("card-text")
-        .text(`Wind: ${forecastItem.wind.speed} m/s`);
-      var forecastHumidityText = $("<p>")
-        .addClass("card-text")
-        .text(`Humidity: ${forecastItem.main.humidity} %`);
+        var forecastCard = $("<div>").addClass("col-md-2 card forecast-card");
+        var forecastCardBody = $("<div>").addClass("card-body");
+        var forecastCardTitle = $("<h5>")
+          .addClass("card-title")
+          .text(forecastDate);
+        var forecastCardText = $("<p>")
+          .addClass("card-text")
+          .text(`Temp: ${forecastTemp} °C`);
+        var forecastWeatherIcon = $("<img>").attr(
+          "src",
+          `http://openweathermap.org/img/w/${forecastItem.weather[0].icon}.png`
+        );
+        var forecastWindText = $("<p>")
+          .addClass("card-text")
+          .text(`Wind: ${forecastItem.wind.speed} m/s`);
+        var forecastHumidityText = $("<p>")
+          .addClass("card-text")
+          .text(`Humidity: ${forecastItem.main.humidity} %`);
 
-      forecastCardBody.append(
-        forecastCardTitle,
-        forecastWeatherIcon,
-        forecastCardText,
-        forecastWindText,
-        forecastHumidityText
-      );
-      forecastCard.append(forecastCardBody);
+        forecastCardBody.append(
+          forecastCardTitle,
+          forecastWeatherIcon,
+          forecastCardText,
+          forecastWindText,
+          forecastHumidityText
+        );
+        forecastCard.append(forecastCardBody);
 
-      forecastSection.append(forecastCard);
+        forecastSection.append(forecastCard);
+      }
     }
   }
 
