@@ -98,7 +98,7 @@ $(document).ready(function () {
     // hide the header before a search is run
     $("#forecast-header").css("display", "block");
 
-    for (let i = 0; i < forecastData.list.length; i += 8) {
+    for (let i = 8; i < forecastData.list.length; i += 8) {
       var forecastItem = forecastData.list[i];
       var forecastDate = dayjs(forecastItem.dt_txt).format("DD/MM/YYYY");
       var forecastTemp = (forecastItem.main.temp - 273.15).toFixed(1);
