@@ -61,7 +61,7 @@ function fetchWeatherData(search) {
 function displayCurrentWeather(data) {
   todaySection.html(`
   <h2>${data.name} ${currentDate}</h2>
-  <p>Temperature: ${data.main.temp} °F</p>
+  <p>Temperature: ${(data.main.temp - 273.15).toFixed(1)} °C</p>
   <p>Weather: ${data.weather[0].main}</p>
   `);
 }
