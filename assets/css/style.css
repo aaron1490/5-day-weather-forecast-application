@@ -18,3 +18,13 @@
 #forecast-header {
     display: none;
 }
+
+#history button {
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.forecast-card {
+    margin-left: 10px;
+    margin-right: 10px;
+}
