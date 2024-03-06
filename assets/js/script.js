@@ -1,8 +1,6 @@
 $(document).ready(function () {
 
 // Define variables that I'm going to need
-var APIkey = '3931383ffe79bcfc153c07435437822b';
-var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchBox}&appid=${APIkey}`;
 var searchBox = $(`#search-input`);
 var submitBtn = $("#search-button");
 var historyList = $(`#history`);
@@ -10,6 +8,9 @@ var todaySection = $(`#today`);
 var forecastSection = $(`#forecast`);
 var currentDate = dayjs().format("DD/MM/YYYY");
 
+// API's convenience variables
+var APIkey = '3931383ffe79bcfc153c07435437822b';
+// var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchBox}&appid=${APIkey}`;
 
 
 // load the previous search history from the local storage (in an array format)
@@ -38,40 +39,50 @@ function saveToLS(search) {
   }
 }
 
+// fetch queryURL from the API
+function fetchWeatherData(search) {
+  var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${APIkey}`;
 
-// fetch the queryURL from the API
-fetch(queryURL)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    console.log(queryURL);
-    console.log(data);
-  });
+  fetch(queryURL)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(queryURL);
+      console.log(data);
+      displayCurrentWeather(data);
+    })
+    .catch(function (error) {
+      console.log('Error fetching weather data:', error);
+    });
+}
 
+// display current weather data
+function displayCurrentWeather(data) {
+  todaySection.html(`
+  <h2>${data.name} ${currentDate}</h2>
+  <p>Temperature: ${data.main.temp} °F</p>
+  <p>Weather: ${data.weather[0].main}</p>
+  `);
+}
 
-// 5 day weather forecast display on the right side when a city is searched
-
-// click event that take the value of user input in searchBox and declares it as the variable called search
-submitBtn.onclick(function (event) {
-  event.preventdefault();
+//  search function event listeners
+$("#search-form").on('submit', function (event) {
+  event.preventDefault();
   var search = searchBox.val();
+  if (search !== '') {
+    fetchWeatherData(search);
+    saveToLS(search);
+    searchBox.val('');
+  }
+});
 
-})
+// event listener for the historic search buttons
+historyList.on('click', 'button', function (event) {
+  var search = event.target.textContent;
+  fetchWeatherData(search);
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// call the loadsearch function
+loadSearchHistory();
 })
