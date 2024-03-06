@@ -1,16 +1,18 @@
-# Module 8 Server-Side APIs: Weather Dashboard
+# 5-Day Weather Forecast Application
 
-## Your Task
+## Links
 
-Server APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Your challenge is to build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
+- [Deployed site](https://aaron1490.github.io/5-day-weather-forecast-application/)
+- [GitHub Repository](https://github.com/aaron1490/5-day-weather-forecast-application)
 
-Use the [5 Day Weather Forecast](https://openweathermap.org/forecast5) to retrieve weather data for cities. The link should take you to a guide on how to use the 5 Day Forecast API. You will need to register for an API key in order to use this API. After registering for a new API key, you may need to wait up to 2 hours for that API key to activate.
+## Table of Contents
 
-The base URL for your API calls should look like the following: `https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}`.
-
-**Hint**: Using the 5 Day Weather Forecast API, you'll notice that you will need to pass in coordinates instead of just a city name. Using the OpenWeatherMap APIs, how could we retrieve geographical coordinates given a city name?
-
-You will use `localStorage` to store any persistent data. For more information on how to work with the OpenWeather API, refer to the [Full-Stack Blog on how to use API keys](https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys).
+- [User Story](#user-story)
+- [Overview](#overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [API Used](#api-used)
+- [Demo/Usage](#demo-usage)
 
 ## User Story
 
@@ -20,90 +22,45 @@ I WANT to see the weather outlook for multiple cities
 SO THAT I can plan a trip accordingly
 ```
 
-## Acceptance Criteria
+## Overview
 
-* Create a weather dashboard with form inputs.
-  * When a user searches for a city they are presented with current and future conditions for that city and that city is added to the search history
-  * When a user views the current weather conditions for that city they are presented with:
-    * The city name
-    * The date
-    * An icon representation of weather conditions
-    * The temperature
-    * The humidity
-    * The wind speed
-  * When a user view future weather conditions for that city they are presented with a 5-day forecast that displays:
-    * The date
-    * An icon representation of weather conditions
-    * The temperature
-    * The humidity
-  * When a user click on a city in the search history they are again presented with current and future conditions for that city
+Weather Dashboard is a web application that allows users to check the current weather and a 5-day forecast for a specific city. The application utilizes the OpenWeatherMap API to retrieve weather data.
 
-## Mock-Up
+## Features
 
-The following image shows the web application's appearance and functionality:
+- Display current weather information including temperature, wind speed, and humidity.
+- Show a 5-day forecast with temperature, weather icon, wind speed, and humidity.
+- Save and display search history for quick access to previous searches.
 
-![The weather app includes a search option, a list of cities, and a five-day forecast and current weather conditions for London.](./assets/images/10-server-side-apis-challenge-demo.png)
+## Technologies Used
 
-## Grading Requirements
+- HTML
+- CSS
+- JavaScript (jQuery)
+- [Bootstrap](https://getbootstrap.com/)
+- [Day.js](https://day.js.org/)
 
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
+## API Used
 
-This Challenge is graded based on the following criteria:
+- [OpenWeatherMap API](https://openweathermap.org/)
 
-### Technical Acceptance Criteria: 40%
 
-* Satisfies all of the above acceptance criteria plus the following:
+## Demo/Usage
 
-  * Uses the OpenWeather API to retrieve weather data.
+Open the application at the [deployed site](https://aaron1490.github.io/5-day-weather-forecast-application/)
 
-  * Uses `localStorage` to store persistent data.
+Upon opening the page, this is what the user will see:
 
-### Deployment: 32%
+![demo1](./assets/images/demo1.png)
 
-* Application deployed at live URL.
+to use the applicationm please type a city into the search bar on the left
 
-* Application loads with no errors.
+![demo2](./assets/images/demo2.png)
 
-* Application GitHub URL submitted.
+As you can see, previous searches are shown on the left below the search bar
 
-* GitHub repository that contains application code.
+![demo3](./assets/images/demo3.png)
 
-### Application Quality: 15%
+See below image for how the 5-day forecast looks
 
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the homework instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality readme file with description, screenshot, and link to deployed application.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a readme describing the project.
-
----
-
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+![demo4](./assets/images/demo4.png)
